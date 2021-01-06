@@ -1,7 +1,37 @@
-import React, { Component } from 'react'
+//import React, { Component } from 'react'
+import { useState } from 'react'
 import ColorBox from './ColorBox'
 import TextBox from './TextBox'
 
+const Container = () => {
+    let [texts, setTexts] = useState([]);
+    let [color, setColor] = useState('red');
+
+    const addText = (text) => {
+        setTexts([...texts, {color, text}]);
+    }
+
+    const colorChange = (color) => {
+        setColor(color);
+    }
+    return (
+        <div>
+            <ColorBox color="red" colorChange={colorChange}/>
+            <ColorBox color="blue" colorChange={colorChange}/>
+            <ColorBox color="green" colorChange={colorChange}/>
+
+            <TextBox color={color} addText={addText}/>
+            <div>
+                { texts.map((text, index)=>{
+                    return <div key={index} style={{color: text.color}}>
+                        {text.text}
+                    </div>
+                })}
+            </div>
+        </div>
+    )
+}
+/*
 class Container extends Component{
     constructor(props){
         super(props);
@@ -44,5 +74,5 @@ class Container extends Component{
         )
     }
 };
-
+*/
 export default Container;

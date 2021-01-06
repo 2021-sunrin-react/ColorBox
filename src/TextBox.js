@@ -1,5 +1,29 @@
-import React, { Component } from 'react'
+//import React, { Component } from 'react'
+import { useState } from 'react'
 
+const TextBox = ({color, addText}) => {
+    let [text, setText] = useState('');
+
+    const textChange = (e) => {
+        setText(e.target.value);
+    }
+
+    const onButtonClick = () => {
+        setText('');
+        addText(text);
+    }
+
+    return (
+        <div>
+            <textarea onChange={textChange} style={{color: color}} value={text}/>
+            <button onClick={onButtonClick}>
+                추가
+            </button>
+        </div>
+    )
+}
+
+/*
 class TextBox extends Component{
     constructor(props){
         super(props);
@@ -31,5 +55,5 @@ class TextBox extends Component{
         )
     }
 };
-
+*/
 export default TextBox;
